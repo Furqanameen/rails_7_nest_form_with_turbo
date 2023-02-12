@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Live streams</h1>
+
+<div id="live_streams">
+  <% @live_streams.each do |live_stream| %>
+    <%= render live_stream %>
+    <p>
+      <%= link_to "Show this live stream", live_stream %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New live stream", new_live_stream_path %>

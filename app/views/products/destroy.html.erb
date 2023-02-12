@@ -1,0 +1,9 @@
+<%# app/views/products/destroy.html.slim %>
+<%= fields model: @project do |form| %>
+  <%= form.fields_for :products, child_index: params[:index] do |product_form| %>
+    <%= turbo_frame_tag "product_#{product_form.index}" do %>
+      <%= product_form.hidden_field :id, value: params[:id] %>
+      <%= product_form.hidden_field :_destroy, value: true %>
+    <% end %>
+  <% end %>
+<% end %>

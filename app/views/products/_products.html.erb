@@ -1,0 +1,24 @@
+
+<%= turbo_frame_tag "product_#{form.index}" do %>
+  <%= form.hidden_field :id %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+  <%= form.submit "destroy product", 
+        formaction: product_path(form.index, form.object.id), 
+        formmethod: :delete, 
+        formnovalidate: true, 
+        data: { turbo_frame: "product_#{form.index}" } %>
+<% end %>

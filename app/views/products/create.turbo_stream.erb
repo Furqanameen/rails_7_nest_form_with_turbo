@@ -1,0 +1,16 @@
+<%# app/views/products/create.turbo_stream.erb %>
+<%= fields model: @project do |form| %>
+  <%= form.fields_for :products, child_index: params[:index] do |product_form| %>
+    <%= turbo_stream.replace "add-product" do %>
+      <%= form.submit "Add product", 
+            formaction: product_path(product_form.index.to_i + 1), 
+            formmethod: :post, 
+            formnovalidate: true, 
+            id: "add-product" %>
+    <% end %>
+
+    <%= turbo_stream.append "products" do %>
+      <%= render "products", form: product_form %>
+    <% end %>
+  <% end %>
+<% end %>

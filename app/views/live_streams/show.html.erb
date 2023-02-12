@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @live_stream %>
+
+<div>
+  <%= link_to "Edit this live stream", edit_live_stream_path(@live_stream) %> |
+  <%= link_to "Back to live streams", live_streams_path %>
+
+  <%= button_to "Destroy this live stream", @live_stream, method: :delete %>
+</div>

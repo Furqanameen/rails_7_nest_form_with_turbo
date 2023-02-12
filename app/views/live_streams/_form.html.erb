@@ -1,0 +1,51 @@
+<%= form_with(model: live_stream) do |form| %>
+  <% if live_stream.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(live_stream.errors.count, "error") %> prohibited this live_stream from being saved:</h2>
+
+      <ul>
+        <% live_stream.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :start_time, style: "display: block" %>
+    <%= form.date_field :start_time %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.datetime_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :live_stream_product, style: "display: block" %>
+    <%= form.number_field :live_stream_product %>
+  </div>
+
+
+  <h4>Products</h4>
+  <div id="products">
+    <%= form.fields_for :products do |product_form| %>
+      <%= render "products/products", form: product_form %>
+    <% end %>
+  </div>
+  <%= form.submit "Add product", 
+      formaction: product_path(@live_stream.products.size), 
+      formmethod: :post, 
+      formnovalidate: true, 
+      id: "add-product" %>
+
+  <div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
